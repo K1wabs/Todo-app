@@ -1,12 +1,12 @@
 let tasks = [];
 let filteredTasks = []; // To store the filtered tasks based on category or search
 
-// Save tasks to localStorage
+
 const saveTasks = () => {
     localStorage.setItem('task', JSON.stringify(tasks));
 }
 
-// Add a new task
+
 const addTask = () => {
     const taskInput = document.getElementById("taskInput");
     const categorySelect = document.getElementById("categorySelect");
@@ -22,7 +22,7 @@ const addTask = () => {
     }
 };
 
-// Update the task list in the DOM
+
 const updateTasksList = () => {
     const taskList = document.getElementById("task-list");
     taskList.innerHTML = ""; // Clear the current list
@@ -50,7 +50,7 @@ const updateTasksList = () => {
     });
 };
 
-// Toggle task completion
+
 const toggleTaskComplete = (index) => {
     tasks[index].completed = !tasks[index].completed;
     updateTasksList();
@@ -58,7 +58,7 @@ const toggleTaskComplete = (index) => {
     saveTasks();
 };
 
-// Edit a task
+
 const editTask = (index) => {
     const taskInput = document.getElementById('taskInput');
     const categorySelect = document.getElementById('categorySelect');
@@ -70,7 +70,7 @@ const editTask = (index) => {
     saveTasks();
 };
 
-// Delete a task
+
 const deleteTask = (index) => {
     tasks.splice(index, 1);
     updateTasksList();
@@ -78,7 +78,7 @@ const deleteTask = (index) => {
     saveTasks();
 };
 
-// Update progress bar and stats
+
 const updateProgress = () => {
     const progressBar = document.getElementById("progress");
     const numbers = document.getElementById("numbers");
@@ -96,27 +96,27 @@ const updateProgress = () => {
     }
 };
 
-// Add event listener to the "Add Task" button
+
 document.getElementById("newTask").addEventListener("click", (e) => {
     e.preventDefault(); // Prevent form submission
     addTask();
 });
 
-// Search tasks
+
 const searchTasks = () => {
     const searchQuery = document.getElementById("searchBar").value.toLowerCase();
     filteredTasks = tasks.filter(task => task.text.toLowerCase().includes(searchQuery));
     updateTasksList();
 };
 
-// Filter tasks by category
+
 const filterByCategory = () => {
     const category = document.getElementById("categoryFilter").value;
     filteredTasks = category ? tasks.filter(task => task.category === category) : [];
     updateTasksList();
 };
 
-// Confetti effect
+
 const blaskconfetti = () => {
     const duration = 15 * 1000,
     animationEnd = Date.now() + duration,
@@ -135,7 +135,7 @@ const blaskconfetti = () => {
   
     const particleCount = 50 * (timeLeft / duration);
   
-    // since particles fall down, start a bit higher than random
+  
     confetti(
       Object.assign({}, defaults, {
         particleCount,
@@ -151,7 +151,7 @@ const blaskconfetti = () => {
   }, 250);
         }
 
-// Load tasks from localStorage on page load
+
 const loadTasks = () => {
     const storedTasks = JSON.parse(localStorage.getItem('task'));
     if (storedTasks) {
